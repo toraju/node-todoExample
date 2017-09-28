@@ -1,12 +1,17 @@
 const expect = require('expect');
 const request = require('supertest');
-
+const {ObjectID} = require('mongodb');
 const {app} = require('./../server');
 const {Todo} = require('./../models/todo');
 const {product} = require('./../models/Product');
 const todos = [
-  {text:'This is for test1 folks'},
-  {text:'This is test2 child'}
+  {_id: new ObjectID(),
+    text:'This is for test1 folks'
+  }
+  ,
+  {_id: new ObjectID(),
+    text:'This is test2 child'
+  }
 ];
 //done has to be called only ones
 beforeEach((done)=>{
@@ -16,6 +21,7 @@ beforeEach((done)=>{
     }).then(()=>done());
   });
 });
+
 //Describe a test suite that contains only one test. describe+it
 describe('POST /product',()=>{
    it("Adding a product test",(done)=>{
@@ -90,5 +96,18 @@ describe("GET /todos", ()=>{
       expect(res.body.todos.length).toBe(2);
     })
     .end(done())
+  });
+});
+
+describe('GET /todo/:id',()=>{
+  it("Should return todo doc", (done)=>{
+   request(app)
+   .end(done)
+  //   .get(`todo/${todo[0]._id.toHexString()}`)
+  //   .expect(200)
+  //   .expect((res)=>{
+  //     expect(res.body.todo.text).toBe(todo[0].text);
+  //   })
+  //   .end(done);
   });
 });
