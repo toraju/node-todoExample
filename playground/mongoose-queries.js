@@ -13,16 +13,16 @@ Todo.findById(id).then((todo)=>{
   }
   console.log("Todo find id:",todo);
 }).catch((e)=> console.log(e));
-// Todo.findOne({
-//   _id:id
-// }).then((todo)=>{
-//   console.log('Todo One',todo);
-// });
-//
-// Todo.find({_id:id}).then((todos)=>{
-//   console.log("Todo id key:",todos);
-// });
-//
-// Todo.find().then((todos)=>{
-//   console.log("List Todo:",todos);
-// });
+Todo.findOne({
+  _id:id
+}).then((todo)=>{
+  console.log('Todo One',todo);
+});
+
+Todo.find({_id:id}).then((todos)=>{
+  console.log("Todo id key:",todos);
+});
+
+Todo.find().then((todos)=>{
+  console.log("List Todo:",todos);
+});
